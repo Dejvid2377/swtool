@@ -1,10 +1,9 @@
 from fastapi import FastAPI
+from api.routes import router as api_router
 from fastapi.middleware.cors import CORSMiddleware
-from api import router as api_router
 
 app = FastAPI()
 
-# CORS middleware to allow frontend access
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["http://localhost:5173"],
@@ -13,5 +12,4 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Include the routes from the api.py
 app.include_router(api_router)
